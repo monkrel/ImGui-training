@@ -148,7 +148,59 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	ImFontConfig config;
 	config.GlyphRanges = io.Fonts->GetGlyphRangesCyrillic();
 	config.RasterizerMultiply = 1.125f;
-	io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Arial.ttf", 16.0f, &config);
+	io.Fonts->AddFontFromFileTTF("C:\\Users\\m0nkrel\\AppData\\Local\\Microsoft\\Windows\\Fonts\\HurmeGeometricSans3-Regular.ttf", 17.0f, &config);
+	ImGuiStyle* style = &ImGui::GetStyle();
+	style->WindowTitleAlign = ImVec2(0.5f, 0.5f);
+	style->WindowBorderSize = 0.0f;
+	style->FramePadding = ImVec2(8.f, 8.f);
+	style->WindowPadding = ImVec2(10.f, 6.f);
+	style->GrabMinSize = 24.f;
+	style->WindowBorderSize = 0.f;
+	style->WindowMenuButtonPosition = ImGuiDir_None;
+	style->ColorButtonPosition = ImGuiDir_Left;
+	style->FrameRounding = 3.f;
+	style->GrabRounding = 4.f;
+	style->ItemSpacing = ImVec2(8.f, 4.0f);
+
+
+	style->Colors[ImGuiCol_Text] = ImVec4(1.00f, 1.00f, 1.00f, 1.00f);
+	style->Colors[ImGuiCol_TextDisabled] = ImVec4(0.50f, 0.50f, 0.50f, 1.00f);
+	style->Colors[ImGuiCol_WindowBg] = ImVec4(0.039f, 0.039f, 0.078f, 1.00f);
+	style->Colors[ImGuiCol_ChildBg] = ImVec4(1.00f, 1.00f, 1.00f, 0.f);
+	//style->Colors[ImGuiCol_PopupBg] = ImVec4(0.07f, 0.07f, 0.09f, 1.00f);
+	/*style->Colors[ImGuiCol_Border] = ImVec4(0.80f, 0.80f, 0.83f, 0.88f);
+	style->Colors[ImGuiCol_BorderShadow] = ImVec4(0.92f, 0.91f, 0.88f, 0.00f);*/
+	style->Colors[ImGuiCol_FrameBg] = ImVec4(0.07f, 0.07f, 0.15f, 1.00f);
+	style->Colors[ImGuiCol_FrameBgHovered] = ImVec4(0.153f, 0.157f, 0.227f, 1.00f);
+	style->Colors[ImGuiCol_FrameBgActive] = ImVec4(0.176f, 0.176f, 0.247f, 1.00f);
+	style->Colors[ImGuiCol_TitleBg] = ImVec4(0.07f, 0.07f, 0.15f, 1.00f);
+	style->Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.07f, 0.07f, 0.15f, 1.00f);
+	style->Colors[ImGuiCol_TitleBgActive] = ImVec4(0.07f, 0.07f, 0.15f, 1.00f);
+	/*style->Colors[ImGuiCol_MenuBarBg] = ImVec4(0.10f, 0.09f, 0.12f, 1.00f);*/
+	style->Colors[ImGuiCol_ScrollbarBg] = ImVec4(0.310f, 0.310f, 0.310f, 0.00f);
+	style->Colors[ImGuiCol_ScrollbarGrab] = ImVec4(0.310f, 0.310f, 0.310f, 0.31f);
+	style->Colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(0.410f, 0.410f, 0.410f, 1.00f);
+	style->Colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(0.510f, 0.510f, 0.510f, 1.00f);
+	style->Colors[ImGuiCol_CheckMark] = ImVec4(0.800f, 0.557f, 0.00f, 1.00f);
+	style->Colors[ImGuiCol_SliderGrab] = ImVec4(0.800f, 0.557f, 0.00f, 1.00f);
+	style->Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.800f, 0.557f, 0.00f, 1.00f);
+	style->Colors[ImGuiCol_Button] = ImVec4(0.07f, 0.07f, 0.15f, 1.00f);
+	style->Colors[ImGuiCol_ButtonHovered] = ImVec4(0.176f, 0.176f, 0.247f, 1.00f);
+	style->Colors[ImGuiCol_ButtonActive] = ImVec4(0.800f, 0.557f, 0.00f, 1.00f);
+	/*style->Colors[ImGuiCol_Header] = ImVec4(0.10f, 0.09f, 0.12f, 1.00f);
+	style->Colors[ImGuiCol_HeaderHovered] = ImVec4(0.56f, 0.56f, 0.58f, 1.00f);
+	style->Colors[ImGuiCol_HeaderActive] = ImVec4(0.06f, 0.05f, 0.07f, 1.00f);*/
+	style->Colors[ImGuiCol_Separator] = ImVec4(0.039f, 0.039f, 0.078f, 0.00f);
+	style->Colors[ImGuiCol_SeparatorHovered] = ImVec4(0.039f, 0.039f, 0.078f, 0.00f);
+	style->Colors[ImGuiCol_SeparatorActive] = ImVec4(0.039f, 0.039f, 0.078f, 0.00f);
+	style->Colors[ImGuiCol_ResizeGrip] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
+	style->Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.56f, 0.56f, 0.58f, 0.00f);
+	style->Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.06f, 0.05f, 0.07f, 0.00f);
+	style->Colors[ImGuiCol_Tab] = ImVec4(0.039f, 0.039f, 0.078f, 1.00f);
+	style->Colors[ImGuiCol_TabHovered] = ImVec4(0.070f, 0.070f, 0.130f, 1.00f);
+	style->Colors[ImGuiCol_TabActive] = ImVec4(0.039f, 0.039f, 0.078f, 1.00f);
+	
+
 
 	ImGui_ImplWin32_Init(window);
 	ImGui_ImplDX11_Init(device, context);
@@ -171,25 +223,117 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		float xcenter = (io.DisplaySize.x) / 2;
 		float ycenter = (io.DisplaySize.y) / 2;
 		
+		static bool checkbox = false;
+		static bool offscreen = true;
 
-		//simple csgo cheat menu
-		ImGui::Begin("CSGO Cheat Menu", NULL, ImGuiWindowFlags_AlwaysAutoResize);
-		ImGui::Text("CSGO Cheat Menu");
-		ImGui::Separator();
-		ImGui::Text("Version: 1.0");
-		ImGui::Text("Author: Kuroko");
-		ImGui::Text("Discription: Simple CSGO Cheat Menu");
-		ImGui::Separator();
-		ImGui::Text("Features:");
-		ImGui::Text("- ESP");
-		ImGui::Text("- Triggerbot");
-		ImGui::Text("- Aimbot");
-		ImGui::Text("- Bunnyhop");
-		ImGui::Text("- Noflash");
-		ImGui::Text("- No recoil");
-		ImGui::Text("- No spread");
-		ImGui::End();
+		static bool isOpen = false;
+		if (GetAsyncKeyState(VK_INSERT) & 0x1) isOpen = !isOpen;
+		
+		if (isOpen)
+		{
+			ImGuiWindowFlags flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize;
+			ImGui::SetNextWindowSize(ImVec2((io.DisplaySize.x) / 2.f, (io.DisplaySize.y) / 1.45f));
+			ImGui::Begin("Unicore", NULL, flags);
+			//style->FramePadding.y = 4.f;
+			if (ImGui::BeginTabBar("###Main Tab Bar", ImGuiTabBarFlags_NoTooltip))
+			{
+				if (ImGui::BeginTabItem("    Visuals    "))
+				{
+					if (ImGui::BeginTabBar("Lol", ImGuiTabBarFlags_NoTooltip))
+					{
+						if (ImGui::BeginTabItem("Global"))
+						{
+							ImGui::BeginChild("1", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 3)) / 2.5f));
+							ImGui::Checkbox("Chest (Common)", &checkbox);
+							//ImGui::SameLine();
+							//ImGui::Checkbox("Offscreen", &offscreen);
+							ImGui::Checkbox("Chest (Exquisite)", &checkbox);
+							//ImGui::SameLine();
+							//ImGui::Checkbox("Offscreen", &offscreen);
+							ImGui::Checkbox("Chest (Luxorius)", &checkbox);
+							//ImGui::SameLine();
+							//ImGui::Checkbox("Offscreen", &offscreen);
+							ImGui::Checkbox("Wind Slime", &checkbox);
+							//ImGui::SameLine();
+							//ImGui::Checkbox("Offscreen", &offscreen);
+							ImGui::Checkbox("Ice Bulk", &checkbox);
+							//ImGui::SameLine();
+							//ImGui::Checkbox("Offscreen", &offscreen);
+							ImGui::Checkbox("Search Point", &checkbox);
+							//ImGui::SameLine();
+							//ImGui::Checkbox("Offscreen", &offscreen);
+							ImGui::Checkbox("Bloatty Floatty", &checkbox);
+							//ImGui::SameLine();
+							//ImGui::Checkbox("Offscreen", &offscreen);
+							ImGui::EndChild();
 
+							ImGui::SameLine();
+							ImGui::BeginChild("2", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 3)) / 2.5f));
+							ImGui::Checkbox("     Chest2", &checkbox);
+							ImGui::EndChild();
+
+							ImGui::BeginChild("3", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 3)) / 2.5f));
+							ImGui::Checkbox("     Chest3", &checkbox);
+							ImGui::EndChild();
+
+							ImGui::SameLine();
+							ImGui::BeginChild("4", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 3)) / 2.5f));
+							ImGui::Checkbox("     Chest4", &checkbox);
+							ImGui::EndChild();
+
+							ImGui::EndTabItem();
+						}
+
+						if (ImGui::BeginTabItem("Local"))
+						{
+							ImGui::BeginChild("1", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 3)) / 2.5f));
+							ImGui::Checkbox("     Chest2", &checkbox);
+							ImGui::EndChild();
+
+							ImGui::SameLine();
+							ImGui::BeginChild("2", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 3)) / 2.5f));
+							ImGui::Checkbox("     Chest3", &checkbox);
+							ImGui::EndChild();
+
+							ImGui::EndTabItem();
+						}
+						ImGui::EndTabBar();
+					}
+					ImGui::EndTabItem();
+				}
+			
+				if (ImGui::BeginTabItem("Player"))
+				{
+					ImGui::Text("Player tab");
+					ImGui::EndTabItem();
+				}
+
+				if (ImGui::BeginTabItem("Others"))
+				{
+					ImGui::Text("Others tab");
+					ImGui::EndTabItem();
+				}
+
+				if (ImGui::BeginTabItem("Unsafe"))
+				{
+					ImGui::Text("Unsafe tab");
+					ImGui::EndTabItem();
+				}
+				if (ImGui::BeginTabItem("Settings"))
+				{
+					ImGui::Text("Settings tab");
+					ImGui::EndTabItem();
+				}
+
+				ImGui::EndTabBar();
+
+			}
+
+			ImGui::End();
+			//ImGui::ShowStyleEditor();
+		}
+
+		//end
 		ImGui::Render();
 		context->OMSetRenderTargets(1, &view, NULL);
 		const float clearColor[] = { 0.f, 0.f, 0.f, 1.f };
