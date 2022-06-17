@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include "ImGui/imgui_internal.h"
 #include <filesystem>
+#include "variables.h"
 
 namespace fs = std::filesystem;
 
@@ -148,11 +149,11 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	ImFontConfig config;
 	config.GlyphRanges = io.Fonts->GetGlyphRangesCyrillic();
 	config.RasterizerMultiply = 1.125f;
-	io.Fonts->AddFontFromFileTTF("C:\\Users\\m0nkrel\\AppData\\Local\\Microsoft\\Windows\\Fonts\\HurmeGeometricSans3-Regular.ttf", 17.0f, &config);
+	io.Fonts->AddFontFromFileTTF("C:\\Users\\m0nkrel\\AppData\\Local\\Microsoft\\Windows\\Fonts\\HurmeGeometricSans3-Regular.ttf", 16.0f, &config);
 	ImGuiStyle* style = &ImGui::GetStyle();
 	style->WindowTitleAlign = ImVec2(0.5f, 0.5f);
 	style->WindowBorderSize = 0.0f;
-	style->FramePadding = ImVec2(8.f, 8.f);
+	style->FramePadding = ImVec2(39.f, 6.f);
 	style->WindowPadding = ImVec2(10.f, 6.f);
 	style->GrabMinSize = 24.f;
 	style->WindowBorderSize = 0.f;
@@ -160,7 +161,7 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	style->ColorButtonPosition = ImGuiDir_Left;
 	style->FrameRounding = 3.f;
 	style->GrabRounding = 4.f;
-	style->ItemSpacing = ImVec2(8.f, 4.0f);
+	style->ItemSpacing = ImVec2(6.f, 6.0f);
 
 
 	style->Colors[ImGuiCol_Text] = ImVec4(1.00f, 1.00f, 1.00f, 1.00f);
@@ -184,9 +185,9 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	style->Colors[ImGuiCol_CheckMark] = ImVec4(0.800f, 0.557f, 0.00f, 1.00f);
 	style->Colors[ImGuiCol_SliderGrab] = ImVec4(0.800f, 0.557f, 0.00f, 1.00f);
 	style->Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.800f, 0.557f, 0.00f, 1.00f);
-	style->Colors[ImGuiCol_Button] = ImVec4(0.07f, 0.07f, 0.15f, 1.00f);
-	style->Colors[ImGuiCol_ButtonHovered] = ImVec4(0.176f, 0.176f, 0.247f, 1.00f);
-	style->Colors[ImGuiCol_ButtonActive] = ImVec4(0.800f, 0.557f, 0.00f, 1.00f);
+	style->Colors[ImGuiCol_Button] = ImVec4(0.070f, 0.070f, 0.130f, 1.00f);
+	style->Colors[ImGuiCol_ButtonHovered] = ImVec4(0.070f, 0.070f, 0.130f, 1.00f);
+	style->Colors[ImGuiCol_ButtonActive] = ImVec4(0.070f, 0.070f, 0.130f, 1.00f);
 	/*style->Colors[ImGuiCol_Header] = ImVec4(0.10f, 0.09f, 0.12f, 1.00f);
 	style->Colors[ImGuiCol_HeaderHovered] = ImVec4(0.56f, 0.56f, 0.58f, 1.00f);
 	style->Colors[ImGuiCol_HeaderActive] = ImVec4(0.06f, 0.05f, 0.07f, 1.00f);*/
@@ -197,8 +198,8 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	style->Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.56f, 0.56f, 0.58f, 0.00f);
 	style->Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.06f, 0.05f, 0.07f, 0.00f);
 	style->Colors[ImGuiCol_Tab] = ImVec4(0.039f, 0.039f, 0.078f, 1.00f);
-	style->Colors[ImGuiCol_TabHovered] = ImVec4(0.070f, 0.070f, 0.130f, 1.00f);
-	style->Colors[ImGuiCol_TabActive] = ImVec4(0.039f, 0.039f, 0.078f, 1.00f);
+	style->Colors[ImGuiCol_TabHovered] = ImVec4(0.054f, 0.054f, 0.104f, 1.00f);
+	style->Colors[ImGuiCol_TabActive] = ImVec4(0.070f, 0.070f, 0.130f, 1.00f);
 	
 
 
@@ -222,104 +223,184 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 		float xcenter = (io.DisplaySize.x) / 2;
 		float ycenter = (io.DisplaySize.y) / 2;
-		
-		static bool checkbox = false;
-		static bool offscreen = true;
 
+		static float color = 0.0f;
 		static bool isOpen = false;
 		if (GetAsyncKeyState(VK_INSERT) & 0x1) isOpen = !isOpen;
 		
 		if (isOpen)
 		{
-			ImGuiWindowFlags flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize;
-			ImGui::SetNextWindowSize(ImVec2((io.DisplaySize.x) / 2.f, (io.DisplaySize.y) / 1.45f));
+			ImGuiWindowFlags flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoScrollbar;
+			ImGui::SetNextWindowSize(ImVec2((io.DisplaySize.x) / 1.7f, (io.DisplaySize.y) / 1.2f));
 			ImGui::Begin("Unicore", NULL, flags);
 			//style->FramePadding.y = 4.f;
-			if (ImGui::BeginTabBar("###Main Tab Bar", ImGuiTabBarFlags_NoTooltip))
+			if (ImGui::BeginTabBar("###1", ImGuiTabBarFlags_NoTooltip))
 			{
-				if (ImGui::BeginTabItem("    Visuals    "))
+				if (ImGui::BeginTabItem("  Visuals"))
 				{
-					if (ImGui::BeginTabBar("Lol", ImGuiTabBarFlags_NoTooltip))
+					if (ImGui::BeginTabBar("###2", ImGuiTabBarFlags_NoTooltip))
 					{
-						if (ImGui::BeginTabItem("Global"))
+	
+						if (ImGui::BeginTabItem("					Global"))
 						{
-							ImGui::BeginChild("1", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 3)) / 2.5f));
-							ImGui::Checkbox("Chest (Common)", &checkbox);
-							//ImGui::SameLine();
-							//ImGui::Checkbox("Offscreen", &offscreen);
-							ImGui::Checkbox("Chest (Exquisite)", &checkbox);
-							//ImGui::SameLine();
-							//ImGui::Checkbox("Offscreen", &offscreen);
-							ImGui::Checkbox("Chest (Luxorius)", &checkbox);
-							//ImGui::SameLine();
-							//ImGui::Checkbox("Offscreen", &offscreen);
-							ImGui::Checkbox("Wind Slime", &checkbox);
-							//ImGui::SameLine();
-							//ImGui::Checkbox("Offscreen", &offscreen);
-							ImGui::Checkbox("Ice Bulk", &checkbox);
-							//ImGui::SameLine();
-							//ImGui::Checkbox("Offscreen", &offscreen);
-							ImGui::Checkbox("Search Point", &checkbox);
-							//ImGui::SameLine();
-							//ImGui::Checkbox("Offscreen", &offscreen);
-							ImGui::Checkbox("Bloatty Floatty", &checkbox);
-							//ImGui::SameLine();
-							//ImGui::Checkbox("Offscreen", &offscreen);
+
+							//make 2 buttons
+							ImGui::Button("Chests", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, 28.f));
+							ImGui::SameLine();
+							ImGui::Button("Misc", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, 28.f));	
+							
+							ImGui::BeginChild("1", ImVec2(ImGui::GetWindowContentRegionWidth() / 3.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 6)) / 2.5f));
+								ImGui::Checkbox("Chest (Common)"	, &chest_com);
+								ImGui::Checkbox("Chest (Exquisite)" , &chest_exq);
+								ImGui::Checkbox("Chest (Luxorius)"	, &chest_lux);
+								ImGui::Checkbox("Wind Slime"		, &w_slime);
+								ImGui::Checkbox("Ice Bulk"			, &ice_bulk);
+								ImGui::Checkbox("Search Point"		, &s_point);
+								ImGui::Checkbox("Bloatty Floatty"	, &bloat_float);
 							ImGui::EndChild();
 
 							ImGui::SameLine();
-							ImGui::BeginChild("2", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 3)) / 2.5f));
-							ImGui::Checkbox("     Chest2", &checkbox);
+							ImGui::BeginChild("1.5", ImVec2(ImGui::GetWindowContentRegionWidth() / 6.25f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 6)) / 2.5f));
+								ImGui::Checkbox("Offscreen##1"		, &offscreen1);
+								ImGui::Checkbox("Offscreen##2"		, &offscreen2);
+								ImGui::Checkbox("Offscreen##3"		, &offscreen3);
+								ImGui::Checkbox("Offscreen##4"		, &offscreen4);
+								ImGui::Checkbox("Offscreen##5"		, &offscreen5);
+								ImGui::Checkbox("Offscreen##6"		, &offscreen6);
+								ImGui::Checkbox("Offscreen##7"		, &offscreen7);
 							ImGui::EndChild();
-
-							ImGui::BeginChild("3", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 3)) / 2.5f));
-							ImGui::Checkbox("     Chest3", &checkbox);
+							
+							ImGui::SameLine();
+							ImGui::BeginChild("2", ImVec2(ImGui::GetWindowContentRegionWidth() / 3.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 6)) / 2.5f));
+								ImGui::Checkbox("Seelie"			, &seelie);
+								ImGui::Checkbox("Challenge"			, &challenge);
+								ImGui::Checkbox("Oculus"			, &oculi);
+								ImGui::Checkbox("Agate"				, &agate);
 							ImGui::EndChild();
 
 							ImGui::SameLine();
-							ImGui::BeginChild("4", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 3)) / 2.5f));
-							ImGui::Checkbox("     Chest4", &checkbox);
+							ImGui::BeginChild("2.5", ImVec2(ImGui::GetWindowContentRegionWidth() / 6.25f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 6)) / 2.5f));
+								ImGui::Checkbox("Offscreen##8"		, &offscreen8);
+								ImGui::Checkbox("Offscreen##9"		, &offscreen9);
+								ImGui::Checkbox("Offscreen##10"		, &offscreen10);
+								ImGui::Checkbox("Offscreen##11"		, &offscreen11);
 							ImGui::EndChild();
 
+							ImGui::Button("Ores", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, 28.f));
+							ImGui::SameLine();
+							ImGui::Button("Locations", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, 28.f));
+							
+							ImGui::BeginChild("3", ImVec2(ImGui::GetWindowContentRegionWidth() / 3.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 6)) / 2.5f));
+								ImGui::Checkbox("Ore (Metal)"		, &ore_met);
+								ImGui::Checkbox("Ore (Crystal)"		, &ore_cryst);
+								ImGui::Checkbox("Ore (Stone)"		, &ore_stone);
+								ImGui::Checkbox("Ore (Electric)"	, &ore_electr);
+								ImGui::Checkbox("Ore (Starsilver)"	, &ore_starsilver);
+							ImGui::EndChild();
+
+							ImGui::SameLine();
+							ImGui::BeginChild("3.5", ImVec2(ImGui::GetWindowContentRegionWidth() / 6.25f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 6)) / 2.5f));
+								ImGui::Checkbox("Offscreen##12"		, &offscreen12);
+								ImGui::Checkbox("Offscreen##13"		, &offscreen13);
+								ImGui::Checkbox("Offscreen##14"		, &offscreen14);
+								ImGui::Checkbox("Offscreen##15"		, &offscreen15);
+								ImGui::Checkbox("Offscreen##16"		, &offscreen16);
+							ImGui::EndChild();
+
+							ImGui::SameLine();
+							ImGui::BeginChild("4", ImVec2(ImGui::GetWindowContentRegionWidth() / 3.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 6)) / 2.5f));
+								ImGui::Checkbox("Archon Towers"		, &towers);
+								ImGui::Checkbox("Teleports"			, &teleport);
+							ImGui::EndChild();
+
+							ImGui::SameLine();
+							ImGui::BeginChild("4.5", ImVec2(ImGui::GetWindowContentRegionWidth() / 6.25f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 6)) / 2.5f));
+								ImGui::Checkbox("Offscreen##17"		, &offscreen17);
+								ImGui::Checkbox("Offscreen##18"		, &offscreen18);
+							ImGui::EndChild();
+							
 							ImGui::EndTabItem();
 						}
 
-						if (ImGui::BeginTabItem("Local"))
+
+
+						
+						if (ImGui::BeginTabItem("					 Local"))
 						{
-							ImGui::BeginChild("1", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 3)) / 2.5f));
-							ImGui::Checkbox("     Chest2", &checkbox);
+							ImGui::Button("Mondstadt", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, 28.f));
+							ImGui::SameLine();
+							ImGui::Button("Liyue", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, 28.f));
+
+							ImGui::BeginChild("5", ImVec2(ImGui::GetWindowContentRegionWidth() / 3.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 2)) / 2.f));
+								ImGui::Checkbox("Calla Lily"	  , &calla_lily);
+								ImGui::Checkbox("Cecilia"         , &cecilia);
+								ImGui::Checkbox("Dandelion"       , &dandelion);
+								ImGui::Checkbox("Philanemo"       , &philanemo);
+								ImGui::Checkbox("Small Lamp Grass", &lamp_grass);
+								ImGui::Checkbox("Valberry"        , &vallberry);
+								ImGui::Checkbox("Windwhell Aster" , &wind_aster);
+								ImGui::Checkbox("Woolfhook"       , &wolfhook);
+							ImGui::EndChild();
+							
+							ImGui::SameLine();
+							ImGui::BeginChild("5.5", ImVec2(ImGui::GetWindowContentRegionWidth() / 6.25f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 2)) / 2.f));
+								ImGui::Checkbox("Offscreen##19"	  , &offscreen19);
+								ImGui::Checkbox("Offscreen##20"   , &offscreen20);
+								ImGui::Checkbox("Offscreen##21"   , &offscreen21);
+								ImGui::Checkbox("Offscreen##22"   , &offscreen22);
+								ImGui::Checkbox("Offscreen##23"   , &offscreen23);
+								ImGui::Checkbox("Offscreen##24"   , &offscreen24);
+								ImGui::Checkbox("Offscreen##25"   , &offscreen25);
+								ImGui::Checkbox("Offscreen##26"	  , &offscreen26);
 							ImGui::EndChild();
 
 							ImGui::SameLine();
-							ImGui::BeginChild("2", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 3)) / 2.5f));
-							ImGui::Checkbox("     Chest3", &checkbox);
+							ImGui::BeginChild("6", ImVec2(ImGui::GetWindowContentRegionWidth() / 3.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 2)) / 2.f));
+								ImGui::Checkbox("Glaze Lily", &glaze_lily);
+								ImGui::Checkbox("Juyeun Chili", &chili);
+								ImGui::Checkbox("Qingxin", &qingxin);
+								ImGui::Checkbox("Silk flower", &silk_flow);
+								ImGui::Checkbox("Violetgrass", &violetgrass);
+								ImGui::Checkbox("Ore (Cor Lapis)", &ore_lapis);
+								ImGui::Checkbox("Ore (Noc. Jade)", &ore_nocjade);
 							ImGui::EndChild();
 
-							ImGui::EndTabItem();
+							ImGui::SameLine();
+							ImGui::BeginChild("6.5", ImVec2(ImGui::GetWindowContentRegionWidth() / 6.25f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 2)) / 2.f));
+								ImGui::Checkbox("Offscreen##27", &offscreen27);
+								ImGui::Checkbox("Offscreen##28", &offscreen28);
+								ImGui::Checkbox("Offscreen##29", &offscreen29);
+								ImGui::Checkbox("Offscreen##30", &offscreen30);
+								ImGui::Checkbox("Offscreen##31", &offscreen31);
+								ImGui::Checkbox("Offscreen##32", &offscreen32);
+								ImGui::Checkbox("Offscreen##33", &offscreen33);
+							ImGui::EndChild();
 						}
+							
+						
 						ImGui::EndTabBar();
 					}
 					ImGui::EndTabItem();
 				}
 			
-				if (ImGui::BeginTabItem("Player"))
+				if (ImGui::BeginTabItem("  Player"))
 				{
 					ImGui::Text("Player tab");
 					ImGui::EndTabItem();
 				}
 
-				if (ImGui::BeginTabItem("Others"))
+				if (ImGui::BeginTabItem("  Others"))
 				{
 					ImGui::Text("Others tab");
 					ImGui::EndTabItem();
 				}
 
-				if (ImGui::BeginTabItem("Unsafe"))
+				if (ImGui::BeginTabItem("  Unsafe"))
 				{
 					ImGui::Text("Unsafe tab");
 					ImGui::EndTabItem();
 				}
-				if (ImGui::BeginTabItem("Settings"))
+				if (ImGui::BeginTabItem("  Settings"))
 				{
 					ImGui::Text("Settings tab");
 					ImGui::EndTabItem();
@@ -328,7 +409,7 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 				ImGui::EndTabBar();
 
 			}
-
+			
 			ImGui::End();
 			//ImGui::ShowStyleEditor();
 		}

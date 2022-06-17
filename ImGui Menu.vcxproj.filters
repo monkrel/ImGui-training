@@ -51,5 +51,6 @@
     <ClInclude Include="ImGui\imstb_truetype.h">
       <Filter>ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="variables.h" />
   </ItemGroup>
 </Project>

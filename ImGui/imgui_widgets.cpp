@@ -1072,7 +1072,7 @@ bool ImGui::Checkbox(const char* label, bool* v)
 
     const ImRect check_bb(pos, pos + ImVec2(square_sz, square_sz));
     RenderNavHighlight(total_bb, id);
-    RenderFrame(check_bb.Min, check_bb.Max, GetColorU32((held && hovered) ? ImGuiCol_FrameBgActive : hovered ? ImGuiCol_FrameBgHovered : ImGuiCol_FrameBg), true, style.FrameRounding);
+    RenderFrame(check_bb.Min + ImVec2(10.f,0.f), check_bb.Max+ImVec2(10.f, 0.f), GetColorU32((held && hovered) ? ImGuiCol_FrameBgActive : hovered ? ImGuiCol_FrameBgHovered : ImGuiCol_FrameBg), true, style.FrameRounding);
     ImU32 check_col = GetColorU32(ImGuiCol_CheckMark);
     bool mixed_value = (window->DC.ItemFlags & ImGuiItemFlags_MixedValue) != 0;
     if (mixed_value)
@@ -1086,14 +1086,14 @@ bool ImGui::Checkbox(const char* label, bool* v)
     {
         const float pad = ImMax(1.0f, IM_FLOOR(square_sz / 6.0f));
         //RenderCheckMark(window->DrawList, check_bb.Min + ImVec2(pad, pad), check_col, square_sz - pad * 2.0f);
-        window->DrawList->AddRectFilled(check_bb.Min, check_bb.Max, check_col, fmaxf(style.FrameRounding - pad, 3.0f));
+        window->DrawList->AddRectFilled(check_bb.Min + ImVec2(10.f, 0.f), check_bb.Max + ImVec2(10.f, 0.f), check_col, fmaxf(style.FrameRounding - pad, 3.0f));
     }
 
     ImVec2 label_pos = ImVec2(check_bb.Max.x + style.ItemInnerSpacing.x, check_bb.Min.y + style.FramePadding.y);
     if (g.LogEnabled)
         LogRenderedText(&label_pos, mixed_value ? "[~]" : *v ? "[x]" : "[ ]");
     if (label_size.x > 0.0f)
-        RenderText(label_pos, label);
+        RenderText(label_pos+ ImVec2(10.f, 0.f), label);
 
     IMGUI_TEST_ENGINE_ITEM_INFO(id, label, window->DC.ItemFlags | ImGuiItemStatusFlags_Checkable | (*v ? ImGuiItemStatusFlags_Checked : 0));
     return pressed;
@@ -7225,7 +7225,7 @@ static ImU32   ImGui::TabBarCalcTabID(ImGuiTabBar* tab_bar, const char* label)
 static float ImGui::TabBarCalcMaxTabWidth()
 {
     ImGuiContext& g = *GImGui;
-    return g.FontSize * 20.0f;
+    return g.FontSize * 90.0f;
 }
 
 ImGuiTabItem* ImGui::TabBarFindTabByID(ImGuiTabBar* tab_bar, ImGuiID tab_id)
@@ -7751,7 +7751,7 @@ ImVec2 ImGui::TabItemCalcSize(const char* label, bool has_close_button)
         size.x += g.Style.FramePadding.x + (g.Style.ItemInnerSpacing.x + g.FontSize); // We use Y intentionally to fit the close button circle.
     else
         size.x += g.Style.FramePadding.x + 1.0f;
-    return ImVec2(ImMin(size.x, TabBarCalcMaxTabWidth()), size.y);
+    return ImVec2((ImGui::GetWindowSize().x/2), size.y);
 }
 
 void ImGui::TabItemBackground(ImDrawList* draw_list, const ImRect& bb, ImGuiTabItemFlags flags, ImU32 col)
