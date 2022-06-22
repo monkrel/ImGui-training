@@ -233,10 +233,9 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			ImGuiWindowFlags flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoScrollbar;
 			ImGui::SetNextWindowSize(ImVec2((io.DisplaySize.x) / 1.7f, (io.DisplaySize.y) / 1.2f));
 			ImGui::Begin("Unicore", NULL, flags);
-			//style->FramePadding.y = 4.f;
 			if (ImGui::BeginTabBar("###1", ImGuiTabBarFlags_NoTooltip))
 			{
-				if (ImGui::BeginTabItem("  Visuals"))
+				if (ImGui::BeginTabItem("	Visuals"))
 				{
 					if (ImGui::BeginTabBar("###2", ImGuiTabBarFlags_NoTooltip))
 					{
@@ -383,24 +382,70 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 					ImGui::EndTabItem();
 				}
 			
-				if (ImGui::BeginTabItem("  Player"))
+				if (ImGui::BeginTabItem("	Player"))
 				{
-					ImGui::Text("Player tab");
+					char noclip_b[128];
+					char attack_b[128];
+					
+
+					if (noclip_spd > 5.f)
+						sprintf(noclip_b, "Noclip (Unsafe)");
+					else
+						sprintf(noclip_b, "Noclip (Safe)");
+					ImGui::Button(noclip_b, ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, 28.f));
+					ImGui::SameLine();
+					if (attack_spd > 5.f)
+						sprintf(attack_b, "Attack (Unsafe)");
+					else
+						sprintf(attack_b, "Attack (Safe)");
+					ImGui::Button(attack_b, ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, 28.f));
+					
+					ImGui::BeginChild("1", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 2)) / 2.7f));
+						ImGui::Checkbox("Enabled##1", &noclip);
+						ImGui::PushItemWidth(ImGui::GetWindowContentRegionWidth()*0.7f);
+						ImGui::SliderFloat("Speed", &noclip_spd,1.00f ,10.00f, "%.3f");
+						//I have no idea how to make hotkey input so it will be input text.
+						ImGui::InputText("Key##1", hotkey_speed, 128);
+					ImGui::EndChild();
+
+					ImGui::SameLine();
+					ImGui::BeginChild("2", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 2)) / 2.7f));
+						ImGui::Checkbox("Enabled##2", &atkspd);
+						ImGui::PushItemWidth(ImGui::GetWindowContentRegionWidth() * 0.7f);
+						ImGui::SliderFloat("Attack", &attack_spd, 1.00f, 10.00f, "%.3f");
+					ImGui::EndChild();
+
+					ImGui::Button("Skills", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, 28.f));
+					ImGui::SameLine();
+					ImGui::Button("Rapid Fire", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, 28.f));
+
+					ImGui::BeginChild("3", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 2)) / 2.7f));
+						ImGui::Checkbox("Infinite Ultimate", &infult);
+						ImGui::Checkbox("No E/Q Cooldown", &cdreduce);
+						ImGui::PushItemWidth(ImGui::GetWindowContentRegionWidth() * 0.7f);
+						ImGui::SliderFloat("Power##1", &cdreduse_pwr, 0.00f, 1.00f, "%.3f");
+					ImGui::EndChild();
+
+					ImGui::SameLine();
+					ImGui::BeginChild("4", ImVec2(ImGui::GetWindowContentRegionWidth() / 2.f, (ImGui::GetWindowSize().y - (style->FramePadding.y * 2)) / 2.7f));
+						ImGui::Checkbox("Rapid Fire", &rapfire);
+						ImGui::PushItemWidth(ImGui::GetWindowContentRegionWidth() * 0.7f);
+						ImGui::SliderFloat("Power##2", &rapfire_pwr, 1.00f, 50.00f, "%.3f");
+						//I have no idea how to make hotkey input so it will be input text.
+						ImGui::InputText("Key##2", hotkey_rapfire, 128);
+					ImGui::EndChild();
+
 					ImGui::EndTabItem();
 				}
 
-				if (ImGui::BeginTabItem("  Others"))
+				if (ImGui::BeginTabItem("	Others"))
 				{
-					ImGui::Text("Others tab");
+					
+					ImGui::SliderFloat("Speed", &noclip_spd, 0.00f, 1.00f, "%.3f");
 					ImGui::EndTabItem();
 				}
 
-				if (ImGui::BeginTabItem("  Unsafe"))
-				{
-					ImGui::Text("Unsafe tab");
-					ImGui::EndTabItem();
-				}
-				if (ImGui::BeginTabItem("  Settings"))
+				if (ImGui::BeginTabItem("	Settings"))
 				{
 					ImGui::Text("Settings tab");
 					ImGui::EndTabItem();
@@ -411,7 +456,6 @@ INT WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			}
 			
 			ImGui::End();
-			//ImGui::ShowStyleEditor();
 		}
 
 		//end

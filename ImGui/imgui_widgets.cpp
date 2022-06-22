@@ -1054,7 +1054,7 @@ bool ImGui::Checkbox(const char* label, bool* v)
 
     const float square_sz = GetFrameHeight();
     const ImVec2 pos = window->DC.CursorPos;
-    const ImRect total_bb(pos, pos + ImVec2(square_sz + (label_size.x > 0.0f ? style.ItemInnerSpacing.x + label_size.x : 0.0f), label_size.y + style.FramePadding.y * 2.0f));
+    const ImRect total_bb(pos + ImVec2(10.f,0.f), pos + ImVec2(square_sz + (label_size.x > 0.0f ? style.ItemInnerSpacing.x + label_size.x + 10.f : 0.0f), label_size.y + style.FramePadding.y * 2.0f));
     ItemSize(total_bb, style.FramePadding.y);
     if (!ItemAdd(total_bb, id))
     {
@@ -2819,8 +2819,8 @@ bool ImGui::SliderScalar(const char* label, ImGuiDataType data_type, void* p_dat
     const float w = CalcItemWidth();
 
     const ImVec2 label_size = CalcTextSize(label, NULL, true);
-    const ImRect frame_bb(window->DC.CursorPos, window->DC.CursorPos + ImVec2(w, label_size.y + style.FramePadding.y * 2.0f));
-    const ImRect total_bb(frame_bb.Min, frame_bb.Max + ImVec2(label_size.x > 0.0f ? style.ItemInnerSpacing.x + label_size.x : 0.0f, 0.0f));
+    const ImRect frame_bb(window->DC.CursorPos + ImVec2(10.f, 0.f), window->DC.CursorPos + ImVec2(w+10.f, label_size.y + style.FramePadding.y * 2.0f));
+    const ImRect total_bb(frame_bb.Min + ImVec2(10.f,0.f), frame_bb.Max + ImVec2(label_size.x > 0.0f ? style.ItemInnerSpacing.x + label_size.x : 0.0f, 0.0f));
 
     ItemSize(total_bb, style.FramePadding.y);
     if (!ItemAdd(total_bb, id, &frame_bb))
@@ -3811,7 +3811,7 @@ bool ImGui::InputTextEx(const char* label, const char* hint, char* buf, int buf_
     const ImVec2 frame_size = CalcItemSize(size_arg, CalcItemWidth(), (is_multiline ? g.FontSize * 8.0f : label_size.y) + style.FramePadding.y * 2.0f); // Arbitrary default of 8 lines high for multi-line
     const ImVec2 total_size = ImVec2(frame_size.x + (label_size.x > 0.0f ? style.ItemInnerSpacing.x + label_size.x : 0.0f), frame_size.y);
 
-    const ImRect frame_bb(window->DC.CursorPos, window->DC.CursorPos + frame_size);
+    const ImRect frame_bb(window->DC.CursorPos + ImVec2(10.f,0.f), window->DC.CursorPos + frame_size + ImVec2(10.f, 0.f));
     const ImRect total_bb(frame_bb.Min, frame_bb.Min + total_size);
 
     ImGuiWindow* draw_window = window;
