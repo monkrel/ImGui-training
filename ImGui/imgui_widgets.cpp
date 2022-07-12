@@ -1054,7 +1054,7 @@ bool ImGui::Checkbox(const char* label, bool* v)
 
     const float square_sz = GetFrameHeight();
     const ImVec2 pos = window->DC.CursorPos;
-    const ImRect total_bb(pos + ImVec2(10.f,0.f), pos + ImVec2(square_sz + (label_size.x > 0.0f ? style.ItemInnerSpacing.x + label_size.x + 10.f : 0.0f), label_size.y + style.FramePadding.y * 2.0f));
+    const ImRect total_bb(pos + ImVec2(10.f,0.f), pos + ImVec2(square_sz + (label_size.x > 0.0f ? style.ItemInnerSpacing.x + label_size.x + 10.f : 0.0f), label_size.y + style.FramePadding.y));
     ItemSize(total_bb, style.FramePadding.y);
     if (!ItemAdd(total_bb, id))
     {
@@ -1089,11 +1089,11 @@ bool ImGui::Checkbox(const char* label, bool* v)
         window->DrawList->AddRectFilled(check_bb.Min + ImVec2(10.f, 0.f), check_bb.Max + ImVec2(10.f, 0.f), check_col, fmaxf(style.FrameRounding - pad, 3.0f));
     }
 
-    ImVec2 label_pos = ImVec2(check_bb.Max.x + style.ItemInnerSpacing.x, check_bb.Min.y + style.FramePadding.y);
+    ImVec2 label_pos = ImVec2(check_bb.Max.x + style.ItemInnerSpacing.x, check_bb.Min.y + style.FramePadding.y - 2.f);
     if (g.LogEnabled)
         LogRenderedText(&label_pos, mixed_value ? "[~]" : *v ? "[x]" : "[ ]");
     if (label_size.x > 0.0f)
-        RenderText(label_pos+ ImVec2(10.f, 0.f), label);
+        RenderText(label_pos+ ImVec2(10.f, 0.f) , label);
 
     IMGUI_TEST_ENGINE_ITEM_INFO(id, label, window->DC.ItemFlags | ImGuiItemStatusFlags_Checkable | (*v ? ImGuiItemStatusFlags_Checked : 0));
     return pressed;
@@ -1533,7 +1533,7 @@ bool ImGui::BeginCombo(const char* label, const char* preview_value, ImGuiComboF
     }
     RenderFrameBorder(frame_bb.Min, frame_bb.Max, style.FrameRounding);
     if (preview_value != NULL && !(flags & ImGuiComboFlags_NoPreview))
-        RenderTextClipped(frame_bb.Min + style.FramePadding, ImVec2(value_x2, frame_bb.Max.y), preview_value, NULL, NULL, ImVec2(0.0f, 0.0f));
+        RenderTextClipped(frame_bb.Min + ImVec2(5.f, style.FramePadding.y), ImVec2(value_x2, frame_bb.Max.y), preview_value, NULL, NULL, ImVec2(0.0f, 0.0f));
     if (label_size.x > 0)
         RenderText(ImVec2(frame_bb.Max.x + style.ItemInnerSpacing.x, frame_bb.Min.y + style.FramePadding.y), label);
 
@@ -1584,7 +1584,7 @@ bool ImGui::BeginCombo(const char* label, const char* preview_value, ImGuiComboF
     ImGuiWindowFlags window_flags = ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_Popup | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoMove;
 
     // Horizontally align ourselves with the framed text
-    PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(style.FramePadding.x, style.WindowPadding.y));
+    PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(5.f, style.WindowPadding.y));
     bool ret = Begin(name, NULL, window_flags);
     PopStyleVar();
     if (!ret)

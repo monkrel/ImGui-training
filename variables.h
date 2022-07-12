@@ -67,6 +67,14 @@
 		static bool ore_lapis = false;
 		static bool ore_nocjade = false;
 
+		static bool sea_ganodema = false;
+		static bool naku_weed = false;
+		static bool sakura_bloom = false;
+		static bool onikabuto = false;
+		static bool dendrobium = false;
+		static bool crystal_marrow = false;
+		static bool amethyst_lump = false;
+		
 
 		static bool offscreen19 = false;
 		static bool offscreen20 = false;
@@ -86,6 +94,10 @@
 		static bool offscreen34 = false;
 		static bool offscreen35 = false;
 		static bool offscreen36 = false;
+		static bool offscreen37 = false;
+		static bool offscreen38 = false;
+		static bool offscreen39 = false;
+		static bool offscreen40 = false;
 
 ////Player
 		static bool noclip = false;
@@ -100,3 +112,21 @@
 		float rapfire_pwr{};
 		char hotkey_speed[128];
 		char hotkey_rapfire[128];
+
+////Others
+		static bool skip_cutscenes = false;
+		static bool speed_dial = false;
+		static bool freeze_mobs = false;
+		static bool mag_oculus = false;
+		static bool mag_agate = false;
+		static bool mag_crystal = false;
+		static bool mag_metal = false;
+		static bool mag_mobs = false;
+		
+		float mag_mobs_radius{};
+		char hotkey_skip_cutscenes[128];
+		char hotkey_freeze_mobs[128];
+		char hotkey_mag_mobs[128];
+		
+//Settings
+		int lang{ 0 };
