@@ -134,6 +134,9 @@
     <ClInclude Include="ImGui\imstb_truetype.h" />
     <ClInclude Include="variables.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="HurmeGeometricSans3-Regular.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
